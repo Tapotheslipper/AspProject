@@ -1,0 +1,37 @@
+@model Dictionary<int, AspProject.Models.DiaryEntry>
+
+<h2>Дневник</h2>
+<a asp-controller="Diary" asp-action="AddEntry" class="btn btn-primary">Добавить запись</a>
+
+@if (!string.IsNullOrEmpty(TempData["result"] as string))
+{
+    <div class="alert alert-success">@TempData["result"]</div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Запись</td>
+            <td>Дата создания</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var keyvp in Model)
+        {
+            var entry = keyvp.Value;
+            <tr>
+                <td class="mb-1">@keyvp.Key</td>
+                <td class="mb-0">@entry.Head</td>
+                <td>
+                    <a acp-controller="Diary" asp-action="OneEntry" asp-route-id="@keyvp.Key" class="btn btn-secondary">@entry.CreatedAtUtc</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (!Model.Any())
+{
+    <p>@TempData["default"]</p>
+}

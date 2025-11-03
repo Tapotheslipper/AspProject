@@ -1,0 +1,12 @@
+@model AspProject.Models.DiaryEntry
+
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-danger">@TempData["error"]</div>
+}
+
+<a asp-controller="Diary" asp-action="Index" class="btn btn-secondary">Назад к списку</a>
+<a asp-controller="Diary" asp-action="EditEntry" asp-route-id="@Model.Id" class="btn btn-primary">Редактировать</a>
+
+<h2>@Model.Head</h2>
+<p>@Model.Text</p>

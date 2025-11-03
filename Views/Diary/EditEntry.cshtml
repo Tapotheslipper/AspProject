@@ -1,0 +1,10 @@
+@model AspProject.Models.DiaryEntry
+
+@{
+    ViewData["head2"] = $"Изменить запись {Model.Id}";
+    ViewData["save-action"] = "EditEntry";
+    ViewData["back-action"] = "OneEntry";
+    ViewData["edit-id"] = $"{Model.Id}";
+}
+
+@await Html.PartialAsync("_DiaryForm", Model)

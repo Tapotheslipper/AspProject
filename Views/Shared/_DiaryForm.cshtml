@@ -1,0 +1,36 @@
+@model AspProject.Models.DiaryEntry
+
+<h2>@ViewData["head2"]</h2>
+
+<form asp-action="@ViewData["save-action"]" method="Post">
+    @if (!string.IsNullOrEmpty(@ViewData["edit-id"] as string))
+    {
+        <input type="hidden" asp-for="Id" value="@ViewData["edit-id"]" />
+    }
+    <div class="mb-3">
+        <label asp-for="Head" class="form-label">Заголовок записи:</label>
+        <input asp-for="Head" class="form-control" />
+        <span asp-validation-for="Head" class="text-danger"></span>
+    </div>
+    
+    <div class="mb-3">
+        <label asp-for="Text" class="form-label">Текст записи:</label>
+        <input asp-for="Text" class="form-control" />
+        <span asp-validation-for="Text" class="text-danger"></span>
+    </div>
+    
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        @if (ViewData.ContainsKey("edit-id"))
+        {
+            <a asp-controller="Diary"
+                asp-action="@ViewData["back-action"]"
+                asp-route-id="@ViewData["edit-id"]"
+                class="btn btn-secondary">Отменить</a>
+        }
+        else
+        {
+            <a asp-controller="Diary" asp-action="@ViewData["back-action"]" class="btn btn-secondary">Отменить</a>
+        }
+    </div>
+</form>
