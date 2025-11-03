@@ -1,8 +1,8 @@
 @model AspProject.Models.DiaryEntry
 
-@if (TempData["error"] != null)
+@if (TempData["default"] != null)
 {
-    <div class="alert alert-danger">@TempData["error"]</div>
+    <div class="alert alert-danger">@TempData["default"]</div>
 }
 
 <a asp-controller="Diary" asp-action="Index" class="btn btn-secondary">Назад к списку</a>
